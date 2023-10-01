@@ -1,0 +1,18 @@
+# Use an official Python runtime as a parent image
+FROM python:3.8-slim
+
+# Set the working directory to /app
+WORKDIR /usr/src/service2
+
+RUN mkdir -p /usr/src/logs && touch /usr/src/logs/service2.log
+
+# Copy the current directory contents into the container at /app
+COPY . .
+
+# Install Flask and other dependencies
+RUN pip install Flask
+
+EXPOSE 8000
+# Run service2.py when the container launches
+CMD ["python", "service2.py"]
+ 

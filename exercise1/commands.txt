@@ -1,0 +1,9 @@
+docker run -d --name service1 --network mycustomnetwork --ip 172.20.0.2 --mount type=bind,source="$(pwd)"/path_to_service1,target=/app --mount type=bind,source="$(pwd)"/logs,target=/app/logs service1
+
+docker run -d --name service2 --network mycustomnetwork --ip 172.20.0.3 --mount type=bind,source="$(pwd)"/path_to_service1,target=/app --mount type=bind,source="$(pwd)"/logs,target=/app/logs service2
+
+docker build . -t service1 -f  DockerFile
+
+docker build . -t service2 -f  DockerFile
+
+docker network create --subnet=172.20.0.0/16 mycustomnetwork
